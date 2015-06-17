@@ -11,7 +11,7 @@ define(['./module'], function (services) {
     services.factory('ProblemService', function ($http, ipCookie) {
         return{
             getUserProblemsFromDb: function (userId) {
-                return $http({ method: 'GET', url: "api/usersProblem/" + userId });
+                return $http({ method: 'GET', url: "http://www.ecomap.org/api/usersProblem/" + userId });
 
             },
             getAllProblemsFromDb:function() {
@@ -21,11 +21,11 @@ define(['./module'], function (services) {
                 });
             },
             getProblemByIdFromDb:function(problemId) {
-                return $http.get("api/problems/" + problemId);
+                return $http.get("http://www.ecomap.org/api/problems/" + problemId);
 
             },
             deletePhotoFromdb:function(link){
-                return $http.delete("/api/photo/"+link);
+                return $http.delete("http://www.ecomap.org/api/photo/"+link);
 
             }
 

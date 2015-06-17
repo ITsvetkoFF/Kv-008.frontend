@@ -6,17 +6,17 @@ define(['./module'], function (services) {
         var saveChangeStatus = true;
         return {
             logIn: function (email, password) {
-                return $http.post('/api/login', {email: email, password: password});
+                return $http.post('http://www.ecomap.org/api/login', {email: email, password: password});
             },
 
             logOut: function () {
                 if (saveChangeStatus) {
-                    return $http.get('/api/logout');
+                    return $http.get('http://www.ecomap.org/api/logout');
                 }
             },
 
             register: function (username, surname, email, password) {
-                return $http.post('/api/register', { first_name: username, last_name: surname, email: email, password: password });
+                return $http.post('http://www.ecomap.org/api/register', { first_name: username, last_name: surname, email: email, password: password });
             },
 
             isLoggedIn: function () {
@@ -41,11 +41,11 @@ define(['./module'], function (services) {
                 return saveChangeStatus;
             },
             changePassword: function (dataPassword) {
-                return $http.post('api/changePassword',dataPassword);
+                return $http.post('http://www.ecomap.org/api/changePassword',dataPassword);
 
             },
             resetPassword: function (data) {
-                return  $http.post('api/resetPassword', data);
+                return  $http.post('http://www.ecomap.org/api/resetPassword', data);
 
 
             }

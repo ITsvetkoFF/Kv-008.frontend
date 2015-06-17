@@ -23,7 +23,7 @@ define(['./module'],function(services) {
         var currentEditStatus = '';
         return {
             getNotApprovedProblem:function(getNotApproved){
-                $http({ method: 'GET', url: '/api/not_approved' })
+                $http({ method: 'GET', url: 'http://www.ecomap.org/api/not_approved' })
                     .success (function (data) {
                         notApproved = data;
                         adminMode = true;
@@ -33,7 +33,7 @@ define(['./module'],function(services) {
             },
 
             deleteNotApprovedProblemDB:function(problem){
-                return $http({ method: 'DELETE', url: '/api/problem/'+problem.Id })
+                return $http({ method: 'DELETE', url: 'http://www.ecomap.org/api/problem/'+problem.Id })
                     .success (function (data) {
                     });
             },
@@ -53,7 +53,7 @@ define(['./module'],function(services) {
             },
 
             approveNotApprovedProblem:function(problem){
-                return $http({ method: 'POST', url: '/api/approve/'+problem.Id });
+                return $http({ method: 'POST', url: 'http://www.ecomap.org/api/approve/'+problem.Id });
             },
 
             showScopeNotApprovedProblemFromList: function(problem){
@@ -77,7 +77,7 @@ define(['./module'],function(services) {
             },
 
              saveChangestoDbProblemDescription: function(problem,severity,content,proposal,title,problemDecided){
-                 return $http.put('/api/editProblem/' + problem.Id, {Title: title, Content: content,Proposal:proposal, Severity: severity, ProblemStatus: problemDecided})
+                 return $http.put('http://www.ecomap.org/api/editProblem/' + problem.Id, {Title: title, Content: content,Proposal:proposal, Severity: severity, ProblemStatus: problemDecided})
              },
 
            redirectToMap: function(location){

@@ -13,7 +13,7 @@ define(['./module'],function(services){
       return {
           socket:socket,
           addNewsToDb:function(message){
-              return $http.post('/api/postNews', {news: message})
+              return $http.post('http://www.ecomap.org/api/postNews', {news: message})
               .success(function (data, status, headers, config) {
               })
               .error(function (data, status, headers, config) {
@@ -22,7 +22,7 @@ define(['./module'],function(services){
 
           },
           getNewsFromDb:function(uploadScope){
-              return $http.get('/api/getNews',{})
+              return $http.get('http://www.ecomap.org/api/getNews',{})
               .success(function(data,status,headers,config){
                   uploadScope(data);
 
@@ -34,7 +34,7 @@ define(['./module'],function(services){
           },
 
           deleteOneNewsItem:function(newsContent){
-              return $http.post('/api/clearOneNews', {content:newsContent})
+              return $http.post('http://www.ecomap.org/api/clearOneNews', {content:newsContent})
               .success(function (data, status, headers, config) {
               })
               .error(function (data, status, headers, config) {
