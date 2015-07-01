@@ -1,69 +1,33 @@
 define(['./module'], function (services) {
     'use strict';
     /**
-     *  - addVoteToDbAndToCookie
+     *  - getProblemComments
      *  - addCommentToDB
-     *  - deleteCommentFromDB
+     *
      *
      *
      *
      *
      */
 
-    services.factory('ActivityService', function ($http, ipCookie) {
+    services.factory('ActivityService', function ($http, CONSTANTS) {
         return{
             getProblemComments:function(problemId) {
-                return $http.get("http://127.0.0.1:8000/api/problems/" + problemId + "/comments");
+                return $http.get(CONSTANTS.API_URL + "problems/" + problemId + "/comments");
 
             },
-            addVoteToDbAndToCookie: function (problemID,userID,userName,userSurname) {
-
-                return $http.post('http://176.36.11.25:8090/api/vote', {idProblem: problemID, userId: userID, userName: userName,userSurname:userSurname})
-                .success(function (data, status, headers, config) {
-                    ipCookie('vote' + problemID, true);
-                })
-                .error(function (data, status, headers, config) {
-                    throw error;
-                });
-             },
-            /*
-            addCommentToDB:function(userID,userName,userSurname,problemID,comment,updateScope) {
-                if(comment==""|| comment == undefined){
-                    alert("Неможливо відправити пусте повідомлення");
-                    return;
-                }
-                var data = {data: {userId: userID, userName: userName,userSurname:userSurname, Content: comment}};
-                return $http.post('http://176.36.11.25:8090/api/comment/' + problemID, JSON.stringify(data))
-                .success(function (data, status, headers, config) {
-
-                         updateScope(data);
-
-                    })
-                .error(function (data, status, headers, config) {
-                    throw error;
-                });
-            },
-            */
-            addCommentToDB:function(comment, problemID, userID) {
+            postProblemComment:function(comment, problemID, userID) {
                 if(!comment){
                     alert("Неможливо відправити пусте повідомлення");
                     return;
                 }
                 var data = {user_id: userID, content: comment};
                 var req = {
-                    url: 'http://127.0.0.1:8000/api/problems/' + problemID + '/comments',
+                    url: CONSTANTS.API_URL + 'problems/' + problemID + '/comments',
                     method: 'POST',
                     data: JSON.stringify(data)
                 };
                 return $http(req);
-            },
-            deleteCommentFromDB:function(id){
-                return $http.delete('http://176.36.11.25:8090/api/activity/' + id)
-                    .success(function (data, status, headers, config) {
-                          })
-                    .error(function (data, status, headers, config) {
-                       throw error;
-                });
             }
         }
 

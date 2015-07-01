@@ -17,7 +17,8 @@ define([
     './slider-directive',
     './closeBut',
     './editProblemProposal',
-    './goClick'
+    './goClick',
+    './fileUpload'
 
 
 
